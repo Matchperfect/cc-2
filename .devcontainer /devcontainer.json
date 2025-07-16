@@ -1,9 +1,9 @@
 {
-  "name": "Claude Code Sandbox",
+  "name": "Claude + Claudia Dev",
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
-      "TZ": "${localEnv:TZ:America/Los_Angeles}"
+      "TZ": "${localEnv:TZ:Europe/Amsterdam}"
     }
   },
   "runArgs": [
@@ -15,7 +15,10 @@
       "extensions": [
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "rust-lang.rust-analyzer",
+        "tauri-apps.tauri-vscode",
+        "bun-lang.bun-vscode"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -48,5 +51,6 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",
-  "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh"
+  "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh",
+  "forwardPorts": [7860, 1420, 3000]
 }
